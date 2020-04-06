@@ -2,11 +2,20 @@
 We empower third-party developers to build dapps, use-cases, and other integrations on DSA’s platform. That way, users can get curated experience as per their needs, and developers can build their own businesses supporting those users. This virtuous circle creates new opportunities and benefits users, developers, and protocols.
 
 ## Index
-* [Get Started](#get-started)
-* Get Accounts
-* Set Instance
-* Build DSA
-* Cast Spell
+- [Developing on DSA](#developing-on-dsa)
+  - [Index](#index)
+  - [Get Started](#get-started)
+  - [Get Accounts](#get-accounts)
+    - [Parameters](#parameters)
+    - [Returns](#returns)
+  - [Set Instance](#set-instance)
+    - [Parameters](#parameters-1)
+  - [Build DSA](#build-dsa)
+    - [Parameters](#parameters-2)
+    - [Returns](#returns-1)
+  - [Interact with DSA](#interact-with-dsa)
+    - [Parameters](#parameters-3)
+    - [Returns](#returns-2)
 
 ## Get Started
 
@@ -72,7 +81,7 @@ dsa.getAccounts(accounts[0])
 
 Web3 equivalent of the above (return value might have different format):
 ```js
-let ABI = [link](https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/resolvers/core.json)
+let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/resolvers/core.json
 let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51"
 let accounts = await web3.eth.getAccounts()
 new web3.eth.Contract(ABI, contract);
@@ -89,7 +98,7 @@ new web3.eth.Contract(ABI, contract);
 
 ## Set Instance
 
-(Optional) Once you get the DSA(s), set some common values so you don't have to pass similar arguments in further calls.
+Once you get the DSA(s), set some common values so you don't have to pass similar arguments in further calls.
 
 ```js
 let accounts = await web3.eth.getAccounts();
@@ -135,7 +144,7 @@ dsa.build()
 
 Web3 equivalent of the above (return value might have different format):
 ```js
-let ABI = [link](https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/index.json)
+let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/index.json
 let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51"
 let accounts = await web3.eth.getAccounts()
 let owner = "0x..."
@@ -147,10 +156,82 @@ new web3.eth.Contract(ABI, contract).methods
     from: accounts[0]
   })
   .on("transactionHash", (txHash) => {
-    resolve(txHash);
+    return txHash;
   })
-  .on("error", (err) => {
-    reject(err);
+  .on("error", (error) => {
+    return error;
+  });
+```
+
+## Interact with DSA
+
+Once the DSA is build, use this function to interact with your DSA. This is where you'll interact with other smart contracts like DeFi protocols.
+
+Create a new instance.
+```js
+let spells = dsa.Spell();
+```
+
+Add the series of transactions details in the instance.
+```js
+spells.add({
+ connector: "basic", // protocol name
+ method: "deposit", // protocol method
+ args: [dsa.token.usdc.address, 1000000, 0, 1] // protocol method arguments
+})
+spells.add({
+ connector: "basic",
+ method: "withdraw",
+ args: [dsa.token.usdc.address, 0, "0x03d70891b8994feB6ccA7022B25c32be92ee3725", 1, 0]
+})
+```
+
+Note: You can get the specific input interface by calling `dsa.getInterface(connector, method)`
+
+Send the transaction to blockchain. CAST YOUR SPELL.
+
+```js
+dsa.cast(spells) // or dsa.cast({data:spells})
+  .then(data => {
+    return data
+  })
+  .catch(error => {
+    return error
+  })
+```
+
+### Parameters
+1. `Instance` - The spell instance.
+OR
+1. `Object`
+   * `data` - The spell instance.
+   * `from` - `String` (optional): The address transactions should be made from (defaulted to selected address).
+   * `gasPrice` - `String` (optional): The gas price in wei to use for transactions.
+   * `gas` - `Number` (optional): The maximum gas provided for a transaction (gas limit).
+
+### Returns
+`String`: Transaction hash `0x.....`.
+
+Web3 equivalent of the above (return value might have different format):
+```js
+let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/account.json
+let contract = "0x..." // DSA address
+let origin = "0x..."
+let accounts = await web3.eth.getAccounts()
+new web3.eth.Contract(ABI, contract).methods
+  .cast(
+    ["0x...", "0x..."], // Array of target addresses
+    ["0x......", "0x......"], // Array of encoded function call, check encodeFunctionCall
+    origin
+  )
+  .send({
+    from: accounts[0]
+  })
+  .on("transactionHash", (txHash) => {
+    return txHash;
+  })
+  .on("error", (error) => {
+    return error;
   });
 ```
 
