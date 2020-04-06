@@ -3,6 +3,8 @@ We empower third-party developers to build dapps, use-cases, and other integrati
 
 Our SDK abstract all the complex internal (like handling addresses, ABIs etc) and provide developers with a simple interface to interact with DSA platform.
 
+## Get Started
+
 To get started, install the DSA SDK package from NPM:
 
 ```bash
@@ -29,6 +31,8 @@ if (window.ethereum) {
   console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
 }
 ```
+
+## get accounts
 
 Once connected to a web3 client, get all the DSA where a specific address is authorised:
 
