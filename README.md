@@ -14,7 +14,7 @@ npm install dsa-sdk
 You can also import the build from CDN:
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.1.12/build/dsa.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.2.0/build/dsa.min.js"></script>
 ```
 
 For production, we recommend linking to a specific version number ([jsdeliver](https://www.jsdelivr.com/package/npm/dsa-sdk)).
@@ -32,7 +32,7 @@ if (window.ethereum) {
 }
 ```
 
-## get accounts
+## Get Accounts
 
 Once connected to a web3 client, get all the DSA where a specific address is authorised:
 
@@ -51,7 +51,7 @@ dsa.getAccounts(accounts[0])
 `address` - An ethereum address.
 
 ### Returns
-An `Array` of `Object` of all the DSA authorised by `address`.
+An `Array` of `Object` of all the DSA where `address` is authorised.
 
 ```js
 [
