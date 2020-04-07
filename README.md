@@ -5,27 +5,33 @@ Our team is super active to assist you with all of your queries at our [TG devel
 
 ## Get Started
 
+**Node**
 To get started, install the DSA SDK package from NPM:
 
 ```bash
 npm install dsa-sdk
 ```
 
-You can also import the build from CDN:
+**For Browser**
 
-```js
-<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.2.0/build/dsa.js"></script>
+ via jsDelivr CDN:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.2.3/build/dsa.js"></script>
 ```
 
 For production, we recommend linking to a specific version number ([jsdeliver](https://www.jsdelivr.com/package/npm/dsa-sdk)).
 
+## Usage
 Now instantiate DSA.
-
 ```js
-const dsa = new DSA()
+// in node.js
+var DSA = require('dsa-sdk');
+
+const dsa = new DSA();
 ```
 
-DSA only works with web3 library so you also have to instantiate Web3.
+DSA only works with web3 library so you also have to instantiate [Web3](https://github.com/ethereum/web3.js/#installation).
 
 ```js
 if (window.ethereum) {
@@ -42,8 +48,8 @@ if (window.ethereum) {
 Once connected to a web3 client, get all the DSA where a specific address is authorised.
 
 ```js
-let accounts = await web3.eth.getAccounts()
-dsa.getAccounts(accounts[0])
+let account = "0x...";
+dsa.getAccounts(account)
   .then(data => {
     return data
   })
@@ -71,11 +77,11 @@ dsa.getAccounts(accounts[0])
 
 Web3 equivalent of the above (return value might have different format):
 ```js
-let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/resolvers/core.json
-let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51"
-let accounts = await web3.eth.getAccounts()
+let ABI = []; // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/resolvers/core.json
+let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51";
+let account = "0x...";
 new web3.eth.Contract(ABI, contract);
-  .getOwnerDetails(accounts[0])
+  .getOwnerDetails(account)
   .call({ from: "0x..." })
   .then((data) => {
     return data
@@ -91,8 +97,8 @@ new web3.eth.Contract(ABI, contract);
 Once you get the DSA(s), set some common values so you don't have to pass similar arguments in further calls.
 
 ```js
-let accounts = await web3.eth.getAccounts();
-let dsaAccount = dsa.getAccounts(accounts[0])
+let account = "0x...";
+let dsaAccount = dsa.getAccounts(account);
 dsa.setInstance({
   id: dsaAccount[0].id,
   address: dsaAccount[0].account,
@@ -118,7 +124,7 @@ dsa.build()
   })
   .catch(error => {
     return error
-  })
+  });
 ```
 
 ### Parameters
@@ -135,11 +141,11 @@ dsa.build()
 Web3 equivalent of the above:
 ```js
 let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/index.json
-let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51"
-let accounts = await web3.eth.getAccounts()
-let owner = "0x..."
+let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51";
+let accounts = await web3.eth.getAccounts();
+let owner = "0x...";
 let version = 1;
-let origin = "0x..."
+let origin = "0x...";
 new web3.eth.Contract(ABI, contract).methods
   .build(owner, version, origin)
   .send({
@@ -168,13 +174,13 @@ spells.add({
  connector: "basic", // name
  method: "deposit", // method
  args: [dsa.token.usdc.address, 1000000, 0, 1] // method arguments
-})
+});
 
 spells.add({
  connector: "basic",
  method: "withdraw",
  args: [dsa.token.usdc.address, 0, "0x03d70891b8994feB6ccA7022B25c32be92ee3725", 1, 0]
-})
+});
 ```
 
 Note: You can get the specific input interface by calling `dsa.getInterface(connector, method)`
@@ -188,7 +194,7 @@ dsa.cast(spells) // or dsa.cast({spells:spells})
   })
   .catch(error => {
     return error
-  })
+  });
 ```
 
 ### Parameters
@@ -205,10 +211,10 @@ OR
 
 Web3 equivalent of the above:
 ```js
-let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/account.json
-let contract = "0x..." // DSA address
-let origin = "0x..."
-let accounts = await web3.eth.getAccounts()
+let ABI = []; // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/account.json
+let contract = "0x..."; // DSA address
+let origin = "0x...";
+let accounts = await web3.eth.getAccounts();
 new web3.eth.Contract(ABI, contract).methods
   .cast(
     ["0x...", "0x..."], // Array of target addresses
