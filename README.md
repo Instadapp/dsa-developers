@@ -14,7 +14,7 @@ npm install dsa-sdk
 You can also import the build from CDN:
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.2.0/build/dsa.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.2.0/build/dsa.js"></script>
 ```
 
 For production, we recommend linking to a specific version number ([jsdeliver](https://www.jsdelivr.com/package/npm/dsa-sdk)).
