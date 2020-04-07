@@ -1,21 +1,16 @@
 # Developing on DSA
 We empower third-party developers to build dapps, use-cases, and other integrations on DSA’s platform. That way, users can get curated experience as per their needs, and developers can build their own businesses supporting those users. This virtuous circle creates new opportunities and benefits users, developers, and protocols.
 
-## Index
-- [Developing on DSA](#developing-on-dsa)
-  - [Index](#index)
-  - [Get Started](#get-started)
-  - [Get Accounts](#get-accounts)
-    - [Parameters](#parameters)
-    - [Returns](#returns)
-  - [Set Instance](#set-instance)
-    - [Parameters](#parameters-1)
-  - [Build DSA](#build-dsa)
-    - [Parameters](#parameters-2)
-    - [Returns](#returns-1)
-  - [Interact with DSA](#interact-with-dsa)
-    - [Parameters](#parameters-3)
-    - [Returns](#returns-2)
+## Sections
+- [Get Started](#get-started)
+
+- [Get Accounts](#get-accounts)
+
+- [Set Instance](#set-instance)
+
+- [Build DSA](#build-dsa)
+
+- [Interact with DSA](#interact-with-dsa)
 
 ## Get Started
 
@@ -142,7 +137,7 @@ dsa.build()
 ### Returns
 `String`: Transaction hash `0x.....`.
 
-Web3 equivalent of the above (return value might have different format):
+Web3 equivalent of the above:
 ```js
 let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/index.json
 let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51"
@@ -179,6 +174,7 @@ spells.add({
  method: "deposit", // protocol method
  args: [dsa.token.usdc.address, 1000000, 0, 1] // protocol method arguments
 })
+
 spells.add({
  connector: "basic",
  method: "withdraw",
@@ -212,7 +208,7 @@ OR
 ### Returns
 `String`: Transaction hash `0x.....`.
 
-Web3 equivalent of the above (return value might have different format):
+Web3 equivalent of the above:
 ```js
 let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/account.json
 let contract = "0x..." // DSA address
