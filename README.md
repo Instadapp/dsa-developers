@@ -165,9 +165,9 @@ let spells = dsa.Spell();
 Add the series of transactions details in the instance.
 ```js
 spells.add({
- connector: "basic", // protocol name
- method: "deposit", // protocol method
- args: [dsa.token.usdc.address, 1000000, 0, 1] // protocol method arguments
+ connector: "basic", // name
+ method: "deposit", // method
+ args: [dsa.token.usdc.address, 1000000, 0, 1] // method arguments
 })
 
 spells.add({
