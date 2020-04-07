@@ -62,7 +62,7 @@ dsa.getAccounts(accounts[0])
 [
   {
     id: 52, // DSA Number
-    account: "0x...", // DSA Address
+    address: "0x...", // DSA Address
     version: 1 // DSA version
   },
   ...
@@ -95,7 +95,7 @@ let accounts = await web3.eth.getAccounts();
 let dsaAccount = dsa.getAccounts(accounts[0])
 dsa.setInstance({
   id: dsaAccount[0].id,
-  account: dsaAccount[0].account,
+  address: dsaAccount[0].account,
   origin: "0x..." // optional
 })
 ```
@@ -103,7 +103,7 @@ dsa.setInstance({
 ### Parameters
 1. `Object`
    * `id` - `Number`: The number of DSA.
-   * `account` - `String`: The address of DSA.
+   * `address` - `String`: The address of DSA.
    * `origin` - `String`: The address to track the transaction origination (affiliates).
 
 
