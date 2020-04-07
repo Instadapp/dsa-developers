@@ -1,6 +1,8 @@
 # Developing on DSA
 We empower third-party developers to build dapps, use-cases, and other integrations on DSA’s platform. That way, users can get curated experience as per their needs, and developers can build their own businesses supporting those users. This virtuous circle creates new opportunities and benefits users, developers, and protocols.
 
+Our team is super active to assist you with all of your queries at our [TG developer group](https://t.me/instadevelopers) or [discord channel](https://discord.gg/83vvrnY).
+
 ## Get Started
 
 To get started, install the DSA SDK package from NPM:
@@ -17,19 +19,23 @@ You can also import the build from CDN:
 
 For production, we recommend linking to a specific version number ([jsdeliver](https://www.jsdelivr.com/package/npm/dsa-sdk)).
 
-Now instantiate Web3 and DSA.
+Now instantiate DSA.
 
 ```js
 const dsa = new DSA()
+```
+
+DSA only works with web3 library so you also have to instantiate Web3.
+
+```js
 if (window.ethereum) {
   window.web3 = new Web3(window.ethereum)
 } else if (window.web3) {
   window.web3 = new Web3(window.web3.currentProvider)
 } else {
-  console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
+  window.web3 = new Web3(customProvider)
 }
 ```
-
 
 ## Get Accounts
 
@@ -108,7 +114,7 @@ Build a new DSA.
 ```js
 dsa.build()
   .then(data => {
-    return data
+    return data // transaction hash
   })
   .catch(error => {
     return error
@@ -176,9 +182,9 @@ Note: You can get the specific input interface by calling `dsa.getInterface(conn
 Send the transaction to blockchain. CAST YOUR SPELL.
 
 ```js
-dsa.cast(spells) // or dsa.cast({data:spells})
+dsa.cast(spells) // or dsa.cast({spells:spells})
   .then(data => {
-    return data
+    return data // transaction hash
   })
   .catch(error => {
     return error
