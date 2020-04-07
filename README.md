@@ -1,17 +1,6 @@
 # Developing on DSA
 We empower third-party developers to build dapps, use-cases, and other integrations on DSA’s platform. That way, users can get curated experience as per their needs, and developers can build their own businesses supporting those users. This virtuous circle creates new opportunities and benefits users, developers, and protocols.
 
-## Sections
-- [Get Started](#get-started)
-
-- [Get Accounts](#get-accounts)
-
-- [Set Instance](#set-instance)
-
-- [Build DSA](#build-dsa)
-
-- [Interact with DSA](#interact-with-dsa)
-
 ## Get Started
 
 To get started, install the DSA SDK package from NPM:
