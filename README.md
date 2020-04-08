@@ -1,7 +1,7 @@
 # Developing on DSA
 We empower third-party developers to build DeFi dapps, use-cases, and other integrations on DSA’s platform. That way, users can get curated experience as per their needs, and developers can build their own businesses supporting those users. This virtuous circle creates new opportunities and benefits users, developers, and protocols.
 
-For an overview, refer [here](overview.md)
+[Refer here for an overview of DSAs](Overview.md)
 
 Our team is super active to assist with your queries at our [TG developer group](https://t.me/instadevelopers) or [discord channel](https://discord.gg/83vvrnY).
 
