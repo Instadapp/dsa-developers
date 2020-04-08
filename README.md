@@ -62,7 +62,7 @@ dsa.getAccounts(address)
 `address` - An ethereum address.
 
 ### Returns
-`Array` of `Object` with all the DSA where `address` parameter is authorised.
+`Array` of address(es) authorised to make calls the DSA.
 
 ```js
 [
