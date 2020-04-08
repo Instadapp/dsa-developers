@@ -201,7 +201,7 @@ dsa.cast(spells) // or dsa.cast({spells:spells})
 1. `Instance` - The spell instance.
 OR
 1. `Object`
-   * `data` - The spell instance.
+   * `spells` - The spell instance.
    * `from` - `String` (optional): The address transactions should be made from (defaulted to selected address).
    * `gasPrice` - `String` (optional): The gas price in wei to use for transactions.
    * `gas` - `Number` (optional): The maximum gas provided for a transaction (gas limit).
