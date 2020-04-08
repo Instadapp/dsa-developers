@@ -26,7 +26,7 @@ For production, we recommend linking to a specific version number ([jsdeliver](h
 Now instantiate DSA.
 ```js
 // in node.js
-var DSA = require('dsa-sdk');
+const dsa = require('dsa-sdk');
 
 const dsa = new DSA();
 ```
@@ -48,8 +48,8 @@ if (window.ethereum) {
 Once connected to a web3 client, get all the DSA where a specific address is authorised.
 
 ```js
-let account = "0x...";
-dsa.getAccounts(account)
+let address = "0x...";
+dsa.getAccounts(address)
   .then(data => {
     return data
   })
@@ -97,8 +97,8 @@ new web3.eth.Contract(ABI, contract);
 Once you get the DSA(s), set some common values so you don't have to pass similar arguments in further calls.
 
 ```js
-let account = "0x...";
-let dsaAccount = dsa.getAccounts(account);
+let address = "0x...";
+let dsaAccount = dsa.getAccounts(address);
 dsa.setInstance({
   id: dsaAccount[0].id,
   address: dsaAccount[0].account,
@@ -142,14 +142,14 @@ Web3 equivalent of the above:
 ```js
 let ABI = [] // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/index.json
 let contract = "0xD6fB4fd8b595d0A1dE727C35fe6F1D4aE5B60F51";
-let accounts = await web3.eth.getAccounts();
+let address = await web3.eth.getAccounts();
 let owner = "0x...";
 let version = 1;
 let origin = "0x...";
 new web3.eth.Contract(ABI, contract).methods
   .build(owner, version, origin)
   .send({
-    from: accounts[0]
+    from: address[0]
   })
   .on("transactionHash", (txHash) => {
     return txHash;
@@ -161,7 +161,7 @@ new web3.eth.Contract(ABI, contract).methods
 
 ## Interact with DSA
 
-Once the DSA is build, use this function to interact with your DSA. This is where you'll interact with other smart contracts like DeFi protocols.
+Once the DSA is build, use the following function to make calls to your DSA. This is where you'll interact with other smart contracts like DeFi protocols.
 
 Create a new instance.
 ```js
@@ -214,7 +214,7 @@ Web3 equivalent of the above:
 let ABI = []; // => https://github.com/InstaDApp/dsa-sdk/blob/master/src/abi/core/account.json
 let contract = "0x..."; // DSA address
 let origin = "0x...";
-let accounts = await web3.eth.getAccounts();
+let address = await web3.eth.getAccounts();
 new web3.eth.Contract(ABI, contract).methods
   .cast(
     ["0x...", "0x..."], // Array of target addresses
@@ -222,7 +222,7 @@ new web3.eth.Contract(ABI, contract).methods
     origin
   )
   .send({
-    from: accounts[0]
+    from: address[0]
   })
   .on("transactionHash", (txHash) => {
     return txHash;
