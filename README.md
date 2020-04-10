@@ -8,6 +8,7 @@ Our team is super active to assist with your queries at our [TG developer group]
 ## Get Started
 
 **Node**
+
 To get started, install the DSA SDK package from NPM:
 
 ```bash
@@ -19,7 +20,7 @@ npm install dsa-sdk
  via jsDelivr CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.2.3/build/dsa.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dsa-sdk@1.2.5/build/dsa.js"></script>
 ```
 
 For production, we recommend linking to a specific version number ([jsdeliver](https://www.jsdelivr.com/package/npm/dsa-sdk)).
@@ -98,28 +99,6 @@ new web3.eth.Contract(ABI, contract);
   });
 ```
 
-
-## Set Instance
-
-Once you get the DSA(s), set some common values so you don't have to pass similar arguments in further calls.
-
-```js
-let address = "0x...";
-let dsaAccount = dsa.getAccounts(address);
-dsa.setInstance({
-  id: dsaAccount[0].id,
-  address: dsaAccount[0].account,
-  origin: "0x..." // optional
-})
-```
-
-### Parameters
-1. `Object`
-   * `id` - `Number`: The number of DSA.
-   * `address` - `String`: The address of DSA.
-   * `origin` - `String`: The address to track the transaction origination (affiliates).
-
-
 ## Build DSA
 
 Build a new DSA.
@@ -165,6 +144,27 @@ new web3.eth.Contract(ABI, contract).methods
     return error;
   });
 ```
+
+## Set Instance
+
+Once you get the DSA(s), set some common values so you don't have to pass similar arguments in further calls.
+
+```js
+let address = "0x...";
+let dsaAccount = await dsa.getAccounts(address);
+dsa.setInstance({
+  id: dsaAccount[0].id,
+  address: dsaAccount[0].account,
+  origin: "0x..." // optional
+})
+```
+
+### Parameters
+1. `Object`
+   * `id` - `Number`: The number of DSA.
+   * `address` - `String`: The address of DSA.
+   * `origin` - `String`: The address to track the transaction origination (affiliates).
+
 
 ## Interact with DSA
 
