@@ -250,3 +250,192 @@ dsa.cast(spells);
 `amount` (uint) - Amount of token. Send `"-1"` to payback 100%.
 `getId` (uint) - Id will be used to get the amount of token to payback.
 `setId` (uint) - Id will be used to set the amount of token payed back.
+
+
+
+## Maker
+
+For MakerDAO Protocol interaction. Eg:- Vault management, DSR DAI, etc.
+
+Connector address - `0x3dF605ca85E8d677C8f6E2665EbcdDbd801Ee9f9`
+
+
+### open()
+
+To Open a New Vault.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "open", // method
+ args: ["colName"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`colName` (string) - Collateral name. Eg:- `ETH-A`, `BAT-A`, `USDC-A`, etc.
+
+
+### close()
+
+To Close a Vault.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "close", // method
+ args: ["vaultId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`vaultId` (uint) - Vault ID. Note:- Vault assets should be 0 in order to close it.
+
+
+### deposit()
+
+Token to deposit as Collateral in Vault.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "deposit", // method
+ args: ["vaultId", "amount", "getId", "setId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`vaultId` (uint) - Vault ID.
+`amount` (uint) - Amount of token to deposit.
+`getId` (uint) - Id will be used to get the amount of token to deposit.
+`setId` (uint) - Id will be used to set the amount of token deposited.
+
+
+### withdraw()
+
+Token to withdraw from Vault.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "withdraw", // method
+ args: ["vaultId", "amount", "getId", "setId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`vaultId` (uint) - Vault ID.
+`amount` (uint) - Amount of token.
+`getId` (uint) - Id will be used to get the amount of token to withdraw.
+`setId` (uint) - Id will be used to set the amount of token withdrawn.
+
+
+### borrow()
+
+DAI to borrow from Vault.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "borrow", // method
+ args: ["vaultId", "amount", "getId", "setId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`vaultId` (uint) - Vault ID.
+`amount` (uint) - Amount of DAI.
+`getId` (uint) - Id will be used to get the amount of DAI to borrow.
+`setId` (uint) - Id will be used to set the amount of DAI borrowed.
+
+
+### payback()
+
+DAI to payback to Vault.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "payback", // method
+ args: ["vaultId", "amount", "getId", "setId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`vaultId` (uint) - Vault ID.
+`amount` (uint) - Amount of DAI.
+`getId` (uint) - Id will be used to get the amount of DAI to payback.
+`setId` (uint) - Id will be used to set the amount of DAI payed back.
+
+
+### withdrawLiquidated()
+
+Withdraw liquidated collateral. When Vault gets liquidated the collateral gets unlocked means it's not available in Vault to be used as a collateral.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "withdrawLiquidated", // method
+ args: ["vaultId", "amount", "getId", "setId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`vaultId` (uint) - Vault ID.
+`amount` (uint) - Amount of liquidated Col.
+`getId` (uint) - Id will be used to get the amount of liquidated Collateral to withdraw.
+`setId` (uint) - Id will be used to set the amount of liquidated Collateral withdrawn.
+
+
+### depositDai()
+
+Deposit DAI in DSR.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "depositDai", // method
+ args: ["amount", "getId", "setId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`amount` (uint) - Amount of DAI.
+`getId` (uint) - Id will be used to get the amount of DAI to deposit.
+`setId` (uint) - Id will be used to set the amount of DAI deposited.
+
+
+### withdrawDai()
+
+Withdraw DAI from DSR.
+
+```js
+let spells = dsa.Spell();
+spells.add({
+ connector: "maker", // name
+ method: "withdrawDai", // method
+ args: ["amount", "getId", "setId"] // method arguments
+});
+dsa.cast(spells);
+```
+
+### Parameters
+`amount` (uint) - Amount of DAI.
+`getId` (uint) - Id will be used to get the amount of DAI to withdraw.
+`setId` (uint) - Id will be used to set the amount of DAI withdrawn.
