@@ -180,13 +180,13 @@ Add the series of transactions details in the instance.
 spells.add({
  connector: "basic", // name
  method: "deposit", // method
- args: [dsa.token.usdc.address, 1000000, 0, 1] // method arguments
+ args: [dsa.tokens.info.usdc.address, 1000000, 0, 1] // method arguments
 });
 
 spells.add({
  connector: "basic",
  method: "withdraw",
- args: [dsa.token.usdc.address, 0, "0x03d70891b8994feB6ccA7022B25c32be92ee3725", 1, 0]
+ args: [dsa.tokens.info.usdc.address, 0, "0x03d70891b8994feB6ccA7022B25c32be92ee3725", 1, 0]
 });
 ```
 
