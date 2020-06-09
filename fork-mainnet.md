@@ -1,4 +1,4 @@
-# Fork-Ethereum-Mainnet
+# Setup Mainnet Fork Environment
 
 Interact with InstaDApp DSA using Forked Mainnet from your local network
 
@@ -8,7 +8,7 @@ So, today we will take a look at how you can fork the mainnet and interact with 
 
 **Step 1:** Forking the Ethereum Mainnet
 
-Open terminal and run
+Open terminal and run:
 
 ```javascript
 ganache-cli --fork https://mainnet.infura.io/v3/{Project_Id} --unlock {Ethereum_Address} -p {Port_Number} --networkId 1
