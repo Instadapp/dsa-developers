@@ -1,4 +1,3 @@
-
 # Using Tenderly to simulate a transaction
 
 Tenderly is a Smart contract monitoring and alerting tool. With tenderly you can monitor smart contracts on multiple Ethereum networks. Recently, tenderly has come up with a great feature of simulating a transaction on Ethereum network which makes debugging a lot more easier than before.
@@ -63,10 +62,8 @@ You can also take a look at the whole Stack Trace which your transaction went th
 
 If you want to know about the contracts that were involved in the transaction you can navigate to the `Contracts` section and take a look.
 
-
 ![alt text](https://github.com/InstaDApp/dsa-developers/blob/master/img/tenderly/gasProfiler.png)
 
 There is also a feature of `Gas Profiler` which provides you with a gas usage breakdown by the function call.
-
 
 Using these steps you can simulate a transaction on tenderly and debug your transaction.

@@ -7,6 +7,7 @@ DeFi Smart Accounts (DSA) are contract accounts  **trustlessly owned by the user
 ## Prerequisite
 -   [web3](https://github.com/ethereum/web3.js/#installation) installed.
 -   Instantiating web3
+
 ```javascript
 // in browser
 if (window.ethereum) {
@@ -20,13 +21,14 @@ if (window.ethereum) {
 // in node.js
 const web3 = new Web3(new Web3.providers.HttpProvider(ETH_NODE_URL))
 ```
+
 ## Creating new DSA.
 
 -   Index Contract is the core contract of DSA and is a factory contract to deploy new DSA for users.
 
 ### .build()
 
-  ` function build(address _owner, uint accountVersion, address _origin)`
+`function build(address _owner, uint accountVersion, address _origin)`
 
 | Parameter | Type | Description|
 |--|--|--|
@@ -56,10 +58,10 @@ new web3.eth.Contract(indexABI, indexAddress).methods
 
 ## Interacting with Your DSA.
 
- Once DSA is created, You can interact with your DSA.
+Once DSA is created, You can interact with your DSA.
 
 ### .cast()
-  `function cast(address[] calldata _targets, bytes[] calldata _datas, address _origin)`
+`function cast(address[] calldata _targets, bytes[] calldata _datas, address _origin)`
 
 | Parameter | Type | Description|
 |--|--|--|
@@ -67,45 +69,19 @@ new web3.eth.Contract(indexABI, indexAddress).methods
 | `_datas` | bytes[] | Array of connector’s function callData.
 | `_origin` | address | Referral Address.
 
-
 **Web3 Code Snippet to interact with DSA.**
 
-> Deposit Asset in Compound Protocol and start earning Interest.
-```javascript 	
-let DepositLogic = { // Desposit Function ABI of compound connector.
-        - inputs: 
-        - [
-            - {
-                - internalType: "address",
-                - name: "token",
-                - type: "address"
-            - },
-            - {
-                - internalType: "uint256",
-                - name: "amt",
-                - type: "uint256"
-            - },
-            - {
-                - internalType: "uint256",
-                - name: "getId",
-                - type: "uint256"
-            - },
-            - {
-                - internalType: "uint256",
-                - name: "setId",
-                - type: "uint256"
-            - }
-        - ],
-        - name: "deposit",
-        - outputs: [ ],
-        - stateMutability: "payable",
-        - type: "function"
-};
-// Address of compound Connector.
+Deposit Asset in Compound Protocol and start earning Interest.
+
+```javascript
+// compound connector desposit function interface
+let depositLogic = [{inputs:[{internalType:"address",name:"token",type:"address"},{internalType:"uint256",name:"amt",type:"uint256"},{internalType:"uint256",name:"getId",type:"uint256"},{internalType:"uint256",      name:"setId",type:"uint256"}],name:"deposit",outputs:[],stateMutability:"payable",type:"function"}];
+
+// compound connector address
 let CompoundAddress = "0x547f1508a2a1ab0cb84dce4b3e09beb560bb44cb"; 
 
 let DSA_Address = "YOUR_DSA_ADDRESS" // Your DSA Address.
-let DSA_ABI = ["Copy and paste ABI here"] // ABI of DSA Contract.
+let DSA_ABI = ["COPY_PASTE_DSA_ABI_HERE"] // ABI of DSA Contract.
 
 // You need to create callData of a specific function of connector.
 let depositArgs = [
@@ -115,7 +91,7 @@ let depositArgs = [
     "0" // It should be zero
   ];
 
-let depositCallData = web3.eth.abi.encodeFunctionCall(DepositLogic, depositArgs);
+let depositCallData = web3.eth.abi.encodeFunctionCall(depositLogic, depositArgs);
 
 // Interacting with DSA.
 new web3.eth.Contract(DSA_ABI, DSA_Address).methods
@@ -133,5 +109,3 @@ new web3.eth.Contract(DSA_ABI, DSA_Address).methods
   });
 ```
 **Note:** We use a mock address to indicate ETH in connectors: `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`
-
-To interact with other Protocols using DSA, here are the available connector[link-to-connectors.].
