@@ -110,6 +110,6 @@ If you want to use any particular token then you can unlock address which holds 
 
 If you encounter error saying : “Error: Returned error: Returned error: project ID does not have access to archive state”. Trying reloading the ganache-cli as this will most probably fix this.
 
-![alt text](https://github.com/InstaDApp/dsa-developers/blob/master/img/forkMainnet/data.png)
+![alt text](https://github.com/InstaDApp/dsa-developers/blob/master/img/forkMainnet/error.png)
 
 **Note:** This is not the best way to interact with DSA as you might face a lot of errors in the process of interacting on forked mainnet. The best way is still the Ethereum Mainnet.
