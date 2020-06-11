@@ -1,4 +1,4 @@
-# DSA auxiliaries guides
+# DSA helper guides
 
 - [web3 implementation](/web3-implementation.md).
 - [setup mainnet fork environment](/fork-mainnet.md)
